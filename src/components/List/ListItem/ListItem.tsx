@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Button from "../../Button";
 
 
@@ -10,27 +10,18 @@ const ListItem = ({
     onRemove: (item: string) => void;
 }) => {
     const listItemRef = useRef<HTMLLIElement>(null);
+    const [keyValue, setKeyValue] = useState(0);
 
-    const onClick = () => {
-        if (!listItemRef.current) {
-            return;
-        }
-        listItemRef.current.style.animation = 'pulse-animation 1.5s';
-    };
-
-    const handleAnimationEnd = () => {
-        if (!listItemRef.current) {
-            return;
-        }
-        listItemRef.current.style.animation = 'none';
+    const onClickLineItem = () => {
+        setKeyValue((prevKeyValue) => prevKeyValue + 1);
     };
 
     return (
         <li
+            key={keyValue}
 			ref={listItemRef}
-			onClick={onClick}
+			onClick={onClickLineItem}
 			className={`li-item`}
-            onAnimationEnd={handleAnimationEnd}
 		>
 			{item}
 			<Button
