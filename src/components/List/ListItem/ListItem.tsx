@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Button from "../../Button";
 
 
@@ -9,7 +9,6 @@ const ListItem = ({
     item: string;
     onRemove: (item: string) => void;
 }) => {
-    const listItemRef = useRef<HTMLLIElement>(null);
     const [keyValue, setKeyValue] = useState(0);
 
     const onClickLineItem = () => {
@@ -19,7 +18,6 @@ const ListItem = ({
     return (
         <li
             key={keyValue}
-			ref={listItemRef}
 			onClick={onClickLineItem}
 			className={`li-item`}
 		>
