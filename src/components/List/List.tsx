@@ -7,13 +7,14 @@ import AddToEndButton from '../AddToEndButton';
 import ListItem from './ListItem';
 
 type Mode = 'add' | 'remove';
+type touchTimeout = ReturnType<typeof setInterval>;
 
 const List = () => {
     const counter = useRenderCounter();
     const [items, setItems] = useState<string[]>([]);
     const [action, setAction] = useState<Mode>('add');
 	const indexRef = useRef<number>(0);
-    const timerRef = useRef<NodeJS.Timeout | null>(null);
+    const timerRef = useRef<touchTimeout | null>(null);
 
 	const handleChangeAction = useCallback(() => {
 		setAction((prev) => (prev === 'add' ? 'remove' : 'add'));
@@ -21,7 +22,7 @@ const List = () => {
 
 	const handleRemoveItems = () => {
 		setItems((prev) => {
-			if (prev.length === 1) {
+			if (prev.length === 1 && timerRef.current) {
 				clearInterval(timerRef.current);
 			}
 			return prev.slice(0, prev.length - 1);
