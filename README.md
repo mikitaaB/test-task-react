@@ -1,5 +1,10 @@
 # test-task-react
 
+### Deploy
+Deployed here: https://test-task-react.onrender.com/
+
+
+
 ### How to setup
 
 1. Install node.js: https://nodejs.org/en/ (LTS)
