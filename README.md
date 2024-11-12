@@ -28,7 +28,7 @@ yarn build
 yarn preview
 ```
 
-The app will be available at http://localhost:4173/calc.
+The app will be available at http://localhost:4173.
 
 ### Requirements
 Есть список, который может работать в 2 режимах:
