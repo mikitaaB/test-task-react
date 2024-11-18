@@ -10,11 +10,11 @@ type Mode = 'add' | 'remove';
 type touchTimeout = ReturnType<typeof setInterval>;
 
 const List = () => {
-    const counter = useRenderCounter();
-    const [items, setItems] = useState<string[]>([]);
-    const [action, setAction] = useState<Mode>('add');
+	const counter = useRenderCounter();
+	const [items, setItems] = useState<string[]>([]);
+	const [action, setAction] = useState<Mode>('add');
 	const indexRef = useRef<number>(0);
-    const timerRef = useRef<touchTimeout | null>(null);
+	const timerRef = useRef<touchTimeout | null>(null);
 
 	const handleChangeAction = useCallback(() => {
 		setAction((prev) => (prev === 'add' ? 'remove' : 'add'));
@@ -34,8 +34,8 @@ const List = () => {
 	}, []);
 
 	const handleAddItem = useCallback(() => {
-        indexRef.current++;
-        setItems((prev) => prev.concat(`${indexRef.current}-item`));
+		indexRef.current++;
+		setItems((prev) => prev.concat(`${indexRef.current}-item`));
 	}, []);
 
 	const handleAddToStart = useCallback(() => {
@@ -49,23 +49,23 @@ const List = () => {
 			: handleRemoveItems();
 	};
 
-    useEffect(() => {
-        handleListMode(action);
+	useEffect(() => {
+		handleListMode(action);
 
-        if (timerRef.current) {
-            clearInterval(timerRef.current);
-        }
+		if (timerRef.current) {
+			clearInterval(timerRef.current);
+		}
 
-        timerRef.current = setInterval(() => {
-            handleListMode(action);
-        }, 1000);
+		timerRef.current = setInterval(() => {
+			handleListMode(action);
+		}, 1000);
 
-        return () => {
-            if (timerRef.current) {
-                clearInterval(timerRef.current);
-            }
-        };
-    }, [action]);
+		return () => {
+			if (timerRef.current) {
+				clearInterval(timerRef.current);
+			}
+		};
+	}, [action]);
 
 	return (
 		<>

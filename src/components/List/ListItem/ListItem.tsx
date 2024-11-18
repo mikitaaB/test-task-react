@@ -6,18 +6,18 @@ const ListItem = ({
 	item,
 	onRemove,
 }: {
-    item: string;
-    onRemove: (item: string) => void;
+	item: string;
+	onRemove: (item: string) => void;
 }) => {
-    const [keyValue, setKeyValue] = useState(0);
+	const [keyValue, setKeyValue] = useState(0);
 
-    const onClickLineItem = () => {
-        setKeyValue((prevKeyValue) => prevKeyValue + 1);
-    };
+	const onClickLineItem = () => {
+		setKeyValue((prevKeyValue) => prevKeyValue + 1);
+	};
 
-    return (
-        <li
-            key={keyValue}
+	return (
+		<li
+			key={keyValue}
 			onClick={onClickLineItem}
 			className={`li-item`}
 		>
